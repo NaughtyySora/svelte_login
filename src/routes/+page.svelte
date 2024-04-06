@@ -1,6 +1,5 @@
 <script>
-  import Widget from "../components/Widget.svelte";
-
+	import Widget from "../components/Widget.svelte";
 </script>
 
 <svelte:head>
@@ -13,5 +12,6 @@
 </section>
 
 <style>
-	.Home {}
+	.Home {
+	}
 </style>
