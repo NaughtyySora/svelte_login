@@ -9,40 +9,68 @@
   type OnSubmit = (e: FormEvent) => void;
 </script>
 
-<form
-  {...$$restProps}
-  class={`Form ${$$props.class || ""}`}
-  on:submit|preventDefault={onSubmit}
->
-  {#if title}
-    <h2 class="Form-title">{title}</h2>
-  {/if}
+<div class="Form-container">
+  <form
+    {...$$restProps}
+    class={`Form ${$$props.class || ""}`}
+    on:submit|preventDefault={onSubmit}
+  >
+    {#if title}
+      <h2 class="Form-title">{title}</h2>
+    {/if}
 
-  <div class="Form-socials">
-    <a href="/" class="Form-socials-item">
-      <Icon name="facebook" />
-    </a>
-    <a href="/" class="Form-socials-item">
-      <Icon name="google" />
-    </a>
-    <a href="/" class="Form-socials-item">
-      <Icon name="linkedin" />
-    </a>
-  </div>
+    <div class="Form-socials">
+      <a href="/" class="Form-socials-item">
+        <Icon name="facebook" />
+      </a>
+      <a href="/" class="Form-socials-item">
+        <Icon name="google" />
+      </a>
+      <a href="/" class="Form-socials-item">
+        <Icon name="linkedin" />
+      </a>
+    </div>
 
-  <slot />
+    <slot />
 
-  <button class="Form-submit" type="submit">
-    {buttonTitle}
-  </button>
-</form>
+    <button class="Form-submit" type="submit">
+      {buttonTitle}
+    </button>
+  </form>
+</div>
 
 <style>
   .Form {
-    max-width: 50%;
     width: 100%;
     height: 100%;
     padding: 2rem;
+  }
+
+  .Form-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    max-width: 50%;
+  }
+
+  .Form.SignIn:not(.left),
+  .Form.SignUp:not(.right) {
+    animation: index .65s ease-in-out 0.5s 1 alternate forwards;
+  }
+
+  .Form.SignUp {
+    transform: translate(-100%);
+    transition: transform .65s;
+  }
+
+  .Form.SignUp.left,
+  .Form.SignIn.right {
+    transform: translate(0);
+  }
+
+  .Form.SignIn {
+    transform: translate(100%);
+    transition: transform .65s;
   }
 
   .Form-title {
@@ -79,5 +107,15 @@
     text-transform: uppercase;
     letter-spacing: 0.05rem;
     margin: 1.5rem auto 0 auto;
+  }
+
+  @keyframes index {
+    from {
+      z-index: 0;
+    }
+
+    to {
+      z-index: 10;
+    }
   }
 </style>

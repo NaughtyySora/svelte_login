@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
 	import SignInForm from "./SignInForm.svelte";
 	import SignUpForm from "./SignUpForm.svelte";
+	let overlayClass = "";
 
 	const overlayContent = [
 		{
@@ -15,19 +16,28 @@
 		// 	button: "Sign up",
 		// },
 	];
+
+	$: left = overlayClass ? "left" : "";
+	$: right = overlayClass ? "" : "right";
+
+	const toggleOverlay = () => {
+		overlayClass = overlayClass ? "" : "active";
+	};
 </script>
 
 <div class="Widget">
-	<SignInForm />
-	<SignUpForm />
+	<SignInForm class={right} />
+	<SignUpForm class={left} />
 
-	<div class="Widget-overlay">
+	<div class={`Widget-overlay ${overlayClass}`}>
 		<div class="Widget-overlay-container">
 			{#each overlayContent as { button, description, title } (title)}
 				<div class="Widget-overlay-panel">
 					<h3 class="Widget-overlay-title">{title}</h3>
 					<p class="Widget-overlay-text">{description}</p>
-					<button class="Widget-overlay-btn">{button}</button>
+					<button class="Widget-overlay-btn" on:click={toggleOverlay}
+						>{button}</button
+					>
 				</div>
 			{/each}
 		</div>
@@ -53,6 +63,14 @@
 	.Widget-overlay {
 		position: absolute;
 		inset: 0;
+
+	}
+
+	.Widget-overlay.active .Widget-overlay-container {
+		transform: translateX(-100%);
+	}
+	.Widget-overlay.active .Widget-overlay {
+		background-color: var(--white);
 	}
 
 	.Widget-overlay-container {
@@ -71,6 +89,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		transition: transform 0.65s ease-in-out;
 	}
 
 	.Widget-overlay-panel {
@@ -96,15 +115,15 @@
 	}
 
 	.Widget-overlay-btn {
-    background-color: transparent;
-    padding: 0.825rem 1.25rem;
-    font-size: var(--fSize14);
-    color: var(--white);
-    border-radius: 2rem;
-    min-width: 150px;
-    text-transform: uppercase;
-    letter-spacing: 0.05rem;
-    margin: 1.5rem auto 0 auto;
+		background-color: transparent;
+		padding: 0.825rem 1.25rem;
+		font-size: var(--fSize14);
+		color: var(--white);
+		border-radius: 2rem;
+		min-width: 150px;
+		text-transform: uppercase;
+		letter-spacing: 0.05rem;
+		margin: 1.5rem auto 0 auto;
 		border: 1px solid var(--white);
 	}
 </style>
