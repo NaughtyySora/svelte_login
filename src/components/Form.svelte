@@ -20,7 +20,7 @@
       <Icon name="google" />
     </a>
     <a href="/" class="Form-socials-item">
-      <Icon name="linked" />
+      <Icon name="linkedin" />
     </a>
   </div>
 
