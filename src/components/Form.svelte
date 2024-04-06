@@ -53,16 +53,11 @@
     max-width: 50%;
   }
 
-  .Form.SignIn:not(.left),
-  .Form.SignUp:not(.right) {
-    animation: index .65s ease-in-out 0.5s 1 alternate forwards;
-  }
-
   .Form.SignUp {
     transform: translate(-100%);
     transition: transform .65s;
   }
-
+  
   .Form.SignUp.left,
   .Form.SignIn.right {
     transform: translate(0);
@@ -107,15 +102,5 @@
     text-transform: uppercase;
     letter-spacing: 0.05rem;
     margin: 1.5rem auto 0 auto;
-  }
-
-  @keyframes index {
-    from {
-      z-index: 0;
-    }
-
-    to {
-      z-index: 10;
-    }
   }
 </style>
