@@ -1,3 +1,3 @@
-### Svelte Login form
+# Svelte Login form
 
-# I'm gonna implement small backend later
+### I'm gonna implement small backend later

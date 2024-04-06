@@ -5,8 +5,7 @@
 	const overlayContent = [
 		{
 			title: "Welcome Back!",
-			description:
-				"To keep connected with us please login with your personal info",
+			description: "To keep connected with us please login with your personal info",
 			button: "Sign In",
 		},
 		{
@@ -15,7 +14,6 @@
 			button: "Sign up",
 		},
 	];
-	
 </script>
 
 <div class="Widget">
