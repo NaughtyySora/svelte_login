@@ -1,8 +1,9 @@
 <script lang="ts">
   import Form from "./Form.svelte";
+
 </script>
 
-<Form title="Sign in" buttonTitle="Sign In" class={`SignIn ${$$props.class}`}>
+<Form {...$$restProps} title="Sign in" buttonTitle="Sign In" class={`SignIn ${$$props.class}`}>
   <p class="SignIn-text">or use your account</p>
   <input class="SignIn-email" type="email" placeholder="Email" />
   <input class="SignIn-password" type="password" placeholder="Password" />

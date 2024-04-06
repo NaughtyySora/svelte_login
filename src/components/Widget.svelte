@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { authApi } from "../api/auth/endpoints";
 	import SignInForm from "./SignInForm.svelte";
 	import SignUpForm from "./SignUpForm.svelte";
 
@@ -20,13 +21,17 @@
 	$: left = overlayClass ? "left" : "";
 	$: right = overlayClass ? "" : "right";
 
-	const toggleOverlay = () => void (overlayClass = overlayClass ? "" : "active");
-	
+	const toggleOverlay = () =>
+		void (overlayClass = overlayClass ? "" : "active");
+	const onSubmit = () => {
+		// authApi.user({a: 1});
+		// authApi.singIn({test: "test", email: 'email@a.com'})
+	};
 </script>
 
 <div class="Widget">
-	<SignInForm class={right} />
-	<SignUpForm class={left} />
+	<SignInForm class={right} onSubmit={onSubmit} />
+	<SignUpForm class={left} onSubmit={onSubmit} />
 
 	<div class={`Widget-overlay ${overlayClass}`}>
 		<div class="Widget-overlay-content">
