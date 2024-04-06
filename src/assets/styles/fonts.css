@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-
 :root {
-  --inter: Montserrat, san-serif;
+  --montserrat: Montserrat, san-serif;
   --fSize80: 5rem;
   --fSize72: 4.5rem;
   --fSize64: 4rem;
