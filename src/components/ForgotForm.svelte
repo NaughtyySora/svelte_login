@@ -1,20 +1,49 @@
 <script lang="ts">
+  import { validators } from "$lib/validators";
+  // import { authApi } from "../api/auth/api";
+  import { addToast } from "../stores/toast-store";
+
+  let sended = false;
+
+  const onSubmit = (e: Event & { currentTarget: HTMLFormElement }) => {
+    const data = new FormData(e.currentTarget);
+
+    if (!validators.email(data.get("email") as string)) {
+      addToast("error", { content: "Invalid Email" });
+      return;
+    }
+    
+    // authApi.forgot(data)
+    // .then(() => {
+    //   addToast("success", { content: "Request sent !" })
+    //   sended = true;
+    // })
+    // .catch(() => void addToast("error", { content: "Error while send request" }));
+  };
+
 </script>
 
 <div class="ForgotForm">
-  <h1 class="ForgotForm-title">Enter Your Email</h1>
+  {#if !sended}
+    <h1 class="ForgotForm-title">Enter Your Email</h1>
+    <form class="ForgotForm-form" on:submit|preventDefault={onSubmit}>
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        id="email"
+        class="ForgotForm-email"
+        autocomplete="email"
+      />
 
-  <form class="ForgotForm-form">
-    <input
-      type="text"
-      name="email"
-      placeholder="Email"
-      id="email"
-      class="ForgotForm-email"
-    />
-
-    <button class="ForgotForm-submit">Submit</button>
-  </form>
+      <button class="ForgotForm-submit">Submit</button>
+    </form>
+  {:else}
+    <div>
+      <h1 class="ForgotForm-title">Check your email</h1>
+      <span class="ForgotForm-letter" />
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -27,9 +56,9 @@
     overflow: hidden;
     min-width: 450px;
     padding: 2.5rem;
+    min-height: 300px;
   }
 
-  
   .ForgotForm-title {
     flex-basis: 100%;
     margin-bottom: 2.5rem;
@@ -56,5 +85,14 @@
     text-transform: uppercase;
     letter-spacing: 0.05rem;
     margin: 1.5rem auto 0 auto;
+  }
+
+  .ForgotForm-letter::before {
+    content: "\2709";
+    font-size: var(--fSize64);
+    line-height: 1;
+    color: var(--blue);
+    text-align: center;
+    display: block;
   }
 </style>

@@ -1,13 +1,11 @@
-import { createApi, type Meta } from "$lib/createApi";
+import { type Meta } from "$lib/createApi";
 
 export const authMeta = {
-  url: "google.com/api/auth",
+  url: "https://test.com/api/auth",
   endpoints: [
     ["get", "user", ["email"]],
     ["post", "singIn", ["email", "password"]],
-    ["post", "singUp", ["email", "name", "password"]]
+    ["post", "singUp", ["email", "name", "password"]],
+    ["post", "forgot", ["email"]]
   ] as Meta["endpoints"],
 };
-
-
-export const authApi = createApi(authMeta);

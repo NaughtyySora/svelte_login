@@ -14,7 +14,7 @@ const buildGet = (url: string, parameters?: BuildParameters) =>
 
 const buildPost = (url: string, parameters?: BuildParameters) =>
   (body: Record<keyof typeof parameters, any>, args: Omit<RequestInit, "body"> = {}) =>
-    fetch(url, { method: "POST", body: JSON.stringify(body), ...args });
+    fetch(url, { method: "POST", body: body instanceof FormData ? body : JSON.stringify(body), ...args });
 
 const builders = {
   get: buildGet,
