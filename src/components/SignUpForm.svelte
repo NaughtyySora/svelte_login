@@ -2,7 +2,12 @@
   import Form from "./Form.svelte";
 </script>
 
-<Form {...$$restProps} title="Create Account" buttonTitle="Sign Up" class={`SignUp ${$$props.class}`}>
+<Form
+  {...$$restProps}
+  title="Create Account"
+  buttonTitle="Sign Up"
+  class={`SignUp ${$$props.class}`}
+>
   <p class="SignUp-text">or use your email for registration</p>
   <input type="text" placeholder="Name" class="SignUp-name" />
   <input type="email" placeholder="Email" class="SignUp-email" />
