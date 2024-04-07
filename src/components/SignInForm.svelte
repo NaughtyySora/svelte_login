@@ -1,6 +1,5 @@
 <script lang="ts">
   import Form from "./Form.svelte";
-
 </script>
 
 <Form {...$$restProps} title="Sign in" buttonTitle="Sign In" class={`SignIn ${$$props.class}`}>
@@ -16,6 +15,7 @@
     margin-bottom: 0.5rem;
     font-size: var(--fSize14);
   }
+
   .SignIn-email,
   .SignIn-password {
     background-color: var(--white_20);

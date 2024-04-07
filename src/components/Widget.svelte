@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { authApi } from "../api/auth/endpoints";
+    import { addToast } from "../stores/toast-store";
 	import SignInForm from "./SignInForm.svelte";
 	import SignUpForm from "./SignUpForm.svelte";
 
@@ -8,12 +8,12 @@
 			title: "Welcome Back!",
 			description:
 				"To keep connected with us please login with your personal info",
-			button: "Sign In",
+			button: "Sign Up",
 		},
 		{
 			title: "Hello, Friend!",
 			description: "Enter your personal details and start journey with us",
-			button: "Sign up",
+			button: "Sign In",
 		},
 	];
 
@@ -23,15 +23,14 @@
 
 	const toggleOverlay = () =>
 		void (overlayClass = overlayClass ? "" : "active");
+
 	const onSubmit = () => {
-		// authApi.user({a: 1});
-		// authApi.singIn({test: "test", email: 'email@a.com'})
 	};
 </script>
 
 <div class="Widget">
-	<SignInForm class={right} onSubmit={onSubmit} />
-	<SignUpForm class={left} onSubmit={onSubmit} />
+	<SignInForm class={right} {onSubmit} />
+	<SignUpForm class={left} {onSubmit} />
 
 	<div class={`Widget-overlay ${overlayClass}`}>
 		<div class="Widget-overlay-content">
@@ -76,9 +75,7 @@
 		align-items: center;
 		justify-content: center;
 		left: 0;
-		transition:
-			transform 0.65s ease-in-out,
-			background 0.65s ease-in-out;
+		transition: transform 0.65s ease-in-out;
 		overflow: hidden;
 	}
 
@@ -137,19 +134,5 @@
 		letter-spacing: 0.05rem;
 		margin: 1.5rem auto 0 auto;
 		border: 1px solid var(--white);
-	}
-
-	@keyframes fade {
-		0% {
-			opacity: 1;
-		}
-
-		50% {
-			opacity: 0;
-		}
-
-		100% {
-			opacity: 1;
-		}
 	}
 </style>

@@ -3,8 +3,8 @@
 </script>
 
 <svelte:head>
-	<title>Account Widget Form</title>
-	<meta name="description" content="Svelte account form" />
+	<title>Login Page</title>
+	<meta name="description" content="Login page svelte" />
 </svelte:head>
 
 <section class="Home">
