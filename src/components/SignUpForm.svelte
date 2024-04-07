@@ -1,5 +1,29 @@
 <script lang="ts">
+  import { bulkValidateForm } from "$lib/validators";
+  // import { authApi } from "../api/auth/api";
+  import { addToast } from "../stores/toast-store";
   import Form from "./Form.svelte";
+
+  const options = [{ key: "email" }, { key: "password" }, { key: "name" }];
+
+  const onSubmit = (e: Event & { currentTarget: HTMLFormElement }) => {
+    const data = new FormData(e.currentTarget);
+    const isValid = bulkValidateForm({ data, options });
+
+    if (!isValid) {
+      addToast("error", { content: "Fields are not valid" });
+      return;
+    }
+
+    // authApi
+    //   .singUp(data)
+    //   .then(() => {
+    //     addToast("success", { content: "Sing Up Success!" });
+    //   })
+    //   .catch(() => {
+    //     addToast("error", { content: "Sing Up Error" });
+    //   });
+  };
 </script>
 
 <Form
@@ -7,11 +31,17 @@
   title="Create Account"
   buttonTitle="Sign Up"
   class={`SignUp ${$$props.class}`}
+  {onSubmit}
 >
   <p class="SignUp-text">or use your email for registration</p>
-  <input type="text" placeholder="Name" class="SignUp-name" />
-  <input type="email" placeholder="Email" class="SignUp-email" />
-  <input type="password" placeholder="Password" class="SignUp-password" />
+  <input type="text" placeholder="Name" class="SignUp-name" name="name" />
+  <input type="email" placeholder="Email" class="SignUp-email" name="email" />
+  <input
+    type="password"
+    placeholder="Password"
+    class="SignUp-password"
+    name="password"
+  />
 </Form>
 
 <style>

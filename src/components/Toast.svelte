@@ -61,7 +61,7 @@
     position: relative;
     width: 350px;
     padding: 1.25rem;
-    background-color: var(--black);
+    background-color: var(--black_10);
     color: var(--white);
     border-radius: 2px;
     font-size: var(--fSize16);

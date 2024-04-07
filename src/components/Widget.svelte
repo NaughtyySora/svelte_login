@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { addToast } from "../stores/toast-store";
 	import SignInForm from "./SignInForm.svelte";
 	import SignUpForm from "./SignUpForm.svelte";
 
@@ -24,13 +23,11 @@
 	const toggleOverlay = () =>
 		void (overlayClass = overlayClass ? "" : "active");
 
-	const onSubmit = () => {
-	};
 </script>
 
 <div class="Widget">
-	<SignInForm class={right} {onSubmit} />
-	<SignUpForm class={left} {onSubmit} />
+	<SignInForm class={right} />
+	<SignUpForm class={left} />
 
 	<div class={`Widget-overlay ${overlayClass}`}>
 		<div class="Widget-overlay-content">
