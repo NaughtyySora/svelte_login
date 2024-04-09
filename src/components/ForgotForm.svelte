@@ -1,32 +1,31 @@
 <script lang="ts">
-  import { validators } from "$lib/validators";
-  // import { authApi } from "../api/auth/api";
-  import { addToast } from "../stores/toast-store";
-
   let sended = false;
 
-  const onSubmit = (e: Event & { currentTarget: HTMLFormElement }) => {
-    const data = new FormData(e.currentTarget);
+  // const onSubmit = (e: Event & { currentTarget: HTMLFormElement }) => {
+  //   const data = new FormData(e.currentTarget);
 
-    if (!validators.email(data.get("email") as string)) {
-      addToast("error", { content: "Invalid Email" });
-      return;
-    }
+  //   if (!validators.email(data.get("email") as string)) {
+  //     addToast("error", { content: "Invalid Email" });
+  //     return;
+  //   }
     
-    // authApi.forgot(data)
-    // .then(() => {
-    //   addToast("success", { content: "Request sent !" })
-    //   sended = true;
-    // })
-    // .catch(() => void addToast("error", { content: "Error while send request" }));
-  };
+  //   // authApi.forgot(data)
+  //   // .then(() => {
+  //   //   addToast("success", { content: "Request sent !" })
+  //   //   sended = true;
+  //   // })
+  //   // .catch(() => void addToast("error", { content: "Error while send request" }));
+  // };
+
+  // client form example above
+  // server example in forgot-password-> +page.server.js
 
 </script>
 
 <div class="ForgotForm">
   {#if !sended}
     <h1 class="ForgotForm-title">Enter Your Email</h1>
-    <form class="ForgotForm-form" on:submit|preventDefault={onSubmit}>
+    <form class="ForgotForm-form" method="POST">
       <input
         type="email"
         name="email"
